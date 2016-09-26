@@ -1,5 +1,5 @@
 {
-  "name": "yii2-oauth2-auth-filter",
+  "name": "indigerd/yii2-oauth2-auth-filter",
   "description": "Yii2 module to check validity of oauth2 token and scope access in microservices.",
   "keywords": ["oauth2", "microservice", "auth", "filter", "oauth2 scopes"],
   "type": "module",
