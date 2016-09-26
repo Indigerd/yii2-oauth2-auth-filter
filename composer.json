@@ -1,0 +1,22 @@
+{
+  "name": "yii2-oauth2-auth-filter",
+  "description": "Yii2 module to check validity of oauth2 token and scope access in microservices.",
+  "keywords": ["oauth2", "microservice", "auth", "filter", "oauth2 scopes"],
+  "type": "module",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alexander Stepanenko",
+      "email": "alex.stepanenko@gmail.com"
+    }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": ">=4,<6",
+    "psr/log": "~1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "indigerd\\oauth2\\authfilter\\": "src/authfilter"
+    }
+  }
+}
