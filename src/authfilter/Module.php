@@ -34,7 +34,7 @@ class Module extends \yii\base\Module
     /**
      * @var string $httpClientClass Class used for interaction with oauth2 auth service via http
      */
-    public $httpClientClass = 'common\modules\authfilter\client\Curl';
+    public $httpClientClass = 'indigerd\oauth2\authfilter\client\Curl';
 
     /**
      * @var bool $testMode Used for tests for not to send requests to auth service
