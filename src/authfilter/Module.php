@@ -117,7 +117,7 @@ class Module extends \yii\base\Module
     public function validateRequest(Request $request)
     {
         if ($this->testMode) {
-            return TestHelper::getTokenInfo();
+            return json_decode(TestHelper::getTokenInfo(), true);
         }
         $accessToken = $this->determineAccessToken($request);
         try {
