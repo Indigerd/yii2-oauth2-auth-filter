@@ -16,6 +16,9 @@ class TestHelper
         if (\Yii::$app->getRequest()->getHeaders()->get('X-Token-info') !== null) {
             $tokenInfo = array_merge($tokenInfo, json_decode(\Yii::$app->getRequest()->getHeaders()->get('X-Token-info'), true));
         }
-        return $tokenInfo;
+        $response = new \yii\web\Response;
+        $response->setStatusCode(200);
+        $response->content = json_encode($tokenInfo);
+        return $response;
     }
 }
