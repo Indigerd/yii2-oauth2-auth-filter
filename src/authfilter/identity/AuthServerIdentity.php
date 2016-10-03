@@ -13,6 +13,8 @@ class AuthServerIdentity implements IdentityInterface
 
     protected $scopes;
 
+    protected $ownerType;
+
     public function getId()
     {
         return $this->id;
@@ -46,6 +48,17 @@ class AuthServerIdentity implements IdentityInterface
         return $this;
     }
 
+    public function getOwnerType()
+    {
+        return $this->ownerType;
+    }
+
+    public function setOwnerType($ownerType)
+    {
+        $this->ownerType = $ownerType;
+        return $this;
+    }
+
     public static function findIdentityByAccessToken($accessToken, $tokenInfo = null)
     {
         if (!empty($tokenInfo['owner_id'])) {
@@ -56,6 +69,9 @@ class AuthServerIdentity implements IdentityInterface
             ;
             if (!empty($tokenInfo['scopes'])) {
                 $identity->setScopes($tokenInfo['scopes']);
+            }
+            if (!empty($tokenInfo['owner_type'])) {
+                $identity->setOwnerType($tokenInfo['owner_type']);
             }
             return $identity;
         }
