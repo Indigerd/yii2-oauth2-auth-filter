@@ -146,7 +146,7 @@ class Module extends \yii\base\Module
      * @throws HttpException
      * @throws InvalidConfigException
      */
-    public function requestAccessToken($username, $password, $scope = '', $rawResponse = false)
+    public function requestAccessToken($username, $password, $scope = '', $rawResponse = false, $grantType = 'password')
     {
         if ($this->testMode) {
             return TestHelper::getTokenInfo();
@@ -163,7 +163,7 @@ class Module extends \yii\base\Module
                 'POST',
                 $url,
                 [
-                    'grant_type'    => 'password',
+                    'grant_type'    => $grantType,
                     'client_id'     => $this->clientId,
                     'client_secret' => $this->clientSecret,
                     'scope'         => $scope,
