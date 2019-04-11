@@ -41,6 +41,8 @@ class Module extends \yii\base\Module
      */
     public $testMode = false;
 
+    public $endpoint ='oauth/token';
+
     /** @var  ClientInterface $httpClient*/
     protected $httpClient;
 
@@ -121,7 +123,7 @@ class Module extends \yii\base\Module
         }
         $accessToken = $this->determineAccessToken($request);
         try {
-            $url      = rtrim($this->authServerUrl, '/') . '/oauth/tokeninfo';
+            $url      = rtrim($this->authServerUrl, '/') . '/' . ltrim($this->endpoint, '/');
             $response = $this->httpClient->sendRequest(
                 'GET',
                 $url,
