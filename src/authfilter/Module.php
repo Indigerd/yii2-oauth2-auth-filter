@@ -41,7 +41,9 @@ class Module extends \yii\base\Module
      */
     public $testMode = false;
 
-    public $endpoint ='oauth/token';
+    public $tokenInfoEndpoint ='oauth/token';
+
+    public $tokenIssueEndpoint = 'oauth/token';
 
     /** @var  ClientInterface $httpClient*/
     protected $httpClient;
@@ -123,7 +125,7 @@ class Module extends \yii\base\Module
         }
         $accessToken = $this->determineAccessToken($request);
         try {
-            $url      = rtrim($this->authServerUrl, '/') . '/' . ltrim($this->endpoint, '/');
+            $url      = rtrim($this->authServerUrl, '/') . '/' . ltrim($this->tokenInfoEndpoint, '/');
             $response = $this->httpClient->sendRequest(
                 'GET',
                 $url,
@@ -160,7 +162,7 @@ class Module extends \yii\base\Module
             throw new InvalidConfigException('Client secret not configured');
         }
         try {
-            $url      = rtrim($this->authServerUrl, '/') . '/oauth/token';
+            $url      = rtrim($this->authServerUrl, '/') . '/' . ltrim($this->tokenIssueEndpoint, '/');
             $response = $this->httpClient->sendRequest(
                 'POST',
                 $url,
@@ -202,7 +204,7 @@ class Module extends \yii\base\Module
             throw new InvalidConfigException('Client secret not configured');
         }
         try {
-            $url      = rtrim($this->authServerUrl, '/') . '/oauth/token';
+            $url      = rtrim($this->authServerUrl, '/') . '/' . ltrim($this->tokenIssueEndpoint, '/');
             $response = $this->httpClient->sendRequest(
                 'POST',
                 $url,
