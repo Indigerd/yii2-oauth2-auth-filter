@@ -24,7 +24,7 @@ class TestHelper
 
     public static function getToken()
     {
-        $tokenInfo = [
+        $token = [
             'access_token' => 'token',
             'token_type' => 'Bearer',
             'expires_in' => '3600',
@@ -32,11 +32,11 @@ class TestHelper
             'owner_id' => '1'
         ];
         if (\Yii::$app->getRequest()->getHeaders()->get('X-Token-info') !== null) {
-            $tokenInfo = array_merge($tokenInfo, json_decode(\Yii::$app->getRequest()->getHeaders()->get('X-Token'), true));
+            $token = array_merge($token, json_decode(\Yii::$app->getRequest()->getHeaders()->get('X-Token'), true));
         }
         $response = new \yii\web\Response;
         $response->setStatusCode(200);
-        $response->content = json_encode($tokenInfo);
+        $response->content = json_encode($token);
         return $response;
     }
 }
