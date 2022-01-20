@@ -153,7 +153,9 @@ class Module extends \yii\base\Module
     public function requestAccessToken($username, $password, $scope = '', $rawResponse = false, $grantType = 'password')
     {
         if ($this->testMode) {
-            return TestHelper::getTokenInfo();
+            $response = TestHelper::getToken();
+
+            return $rawResponse ? $response : json_decode($response->content, true);
         }
         if (empty($this->clientId)) {
             throw new InvalidConfigException('Client ID not configured');
@@ -195,7 +197,9 @@ class Module extends \yii\base\Module
     public function requestAccessByRefreshToken($refresh_token, $scope = '', $rawResponse = false)
     {
         if ($this->testMode) {
-            return TestHelper::getTokenInfo();
+            $response = TestHelper::getToken();
+
+            return $rawResponse ? $response : json_decode($response->content, true);
         }
         if (empty($this->clientId)) {
             throw new InvalidConfigException('Client ID not configured');
