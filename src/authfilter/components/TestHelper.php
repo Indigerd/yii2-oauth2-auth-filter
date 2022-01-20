@@ -31,7 +31,7 @@ class TestHelper
             'refresh_token' => 'token',
             'owner_id' => '1'
         ];
-        if (\Yii::$app->getRequest()->getHeaders()->get('X-Token-info') !== null) {
+        if (\Yii::$app->getRequest()->getHeaders()->get('X-Token') !== null) {
             $token = array_merge($token, json_decode(\Yii::$app->getRequest()->getHeaders()->get('X-Token'), true));
         }
         $response = new \yii\web\Response;
