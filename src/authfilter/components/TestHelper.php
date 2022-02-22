@@ -21,4 +21,22 @@ class TestHelper
         $response->content = json_encode($tokenInfo);
         return $response;
     }
+
+    public static function getToken()
+    {
+        $token = [
+            'access_token' => 'token',
+            'token_type' => 'Bearer',
+            'expires_in' => 3600,
+            'refresh_token' => 'token',
+            'owner_id' => '1'
+        ];
+        if (\Yii::$app->getRequest()->getHeaders()->get('X-Token') !== null) {
+            $token = array_merge($token, json_decode(\Yii::$app->getRequest()->getHeaders()->get('X-Token'), true));
+        }
+        $response = new \yii\web\Response;
+        $response->setStatusCode(200);
+        $response->content = json_encode($token);
+        return $response;
+    }
 }
